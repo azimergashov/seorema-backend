@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <style>
+        .card-work {
+            border-radius: 10px;
+            border: solid 1px black;
+            padding: 30px 20px;
+        }
+    </style>
+    <title>admin-workers</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1 class="text-center mt-3">Ishchi: <%= foundWorker.name%>
+        </h1>
+
+        <form class="mb-5" action="/createTask" enctype="application/x-www-form-urlencoded" method="post" >
+            <textarea class="w-100 " required  name="title"  cols="30" rows="5" placeholder="Vazifani yozing.."></textarea>
+            <input class="d-none" type="number" name="workerId" value="<%= foundWorker.id%>">
+            <div class="text-center">
+                <button class="btn btn-primary w-50" type="submit">Vazifa qo'shish</button>
+            </div>
+        </form>
+
+
+        <h1>Berilgan vazifalar</h1>
+        <ul class="list-unstyled">
+            <% foundWork?.length & foundWork.map(e=>{%>
+
+                <li class="card-work mb-3">
+                    <h2><%= e.title%></h2>
+                    <p>Izoh: <%= e.comment%></p>
+                    <p>Izoh qoldirilgan vaqt: <%= e.commentDate%>  <%= e.commentHour%></p>
+                    <div class="d-flex justify-content-between align-items-lg-center">
+                        <p class="m-0 p-0"><span class="text-success">Vazifa berilgan vaqt:  </span>  <%= e.year%>.<%= e.month%>.<%= e.day%>   <span class="text-success"><%= e.hour%>:<%= e.minute%> </span></p>
+                         <a class="btn btn-danger" href="/deleteTask/<%= e.id%>/<%= foundWorker.id%>">O'chirish</a>
+                    </div>
+                </li>
+
+                <% })%>
+        </ul>
+
+    </div>
+</body>
+
+</html>
