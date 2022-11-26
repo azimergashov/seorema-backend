@@ -2,40 +2,15 @@
     {
         "id": 1,
         "workerId": 2,
-        "title": "asdasdasdasd",
-        "comment": "nma gap",
-        "commentDate": "2022.10.23",
-        "commentHour": "16:37",
-        "year": 2022,
-        "month": 11,
-        "day": 23,
-        "hour": 16,
-        "minute": 18
-    },
-    {
-        "id": 2,
-        "workerId": 2,
-        "title": "zxczxczxc\r\n",
+        "title": "asdasd",
         "comment": "",
         "commentDate": "",
         "commentHour": "",
         "year": 2022,
         "month": 11,
-        "day": 23,
-        "hour": 16,
-        "minute": 38
-    },
-    {
-        "id": 3,
-        "workerId": 3,
-        "title": "narmalni iwla karocci\r\n",
-        "comment": "o'zindan ketmagine",
-        "commentDate": "2022.10.23",
-        "commentHour": "17:17",
-        "year": 2022,
-        "month": 11,
-        "day": 23,
-        "hour": 17,
-        "minute": 16
+        "day": 26,
+        "hour": 11,
+        "minute": 43,
+        "isComplited": false
     }
 ]

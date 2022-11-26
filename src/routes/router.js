@@ -3,7 +3,7 @@ import express from 'express'
 import {  adminWorkersGet } from '../controller/admin.controller.js'
 import { login, loginGet } from '../controller/login.controller.js'
 import { createAdmin, createTask, createWorkerSup, deleteTask, deleteWorkerSup, supperAdminGet } from '../controller/supperadmin.js'
-import { createComment, wokersGet } from '../controller/workers.js'
+import { createComment, iscomplited, wokersGet } from '../controller/workers.js'
 import { supperAdminCostumer, workersCostumer } from '../middlewares/role.costumer.middleware.js'
 import { verifyToken } from '../middlewares/verify.middleware.js'
 
@@ -34,6 +34,7 @@ router.post('/createTask', supperAdminCostumer, createTask)
 // get
 // workers
 router.get('/workers', workersCostumer, wokersGet)
+router.get('/iscomplited/:id', workersCostumer, iscomplited)
 // post
 router.post('/createComment/:id', workersCostumer, createComment)
 // workers

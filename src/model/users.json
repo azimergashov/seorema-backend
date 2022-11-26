@@ -7,14 +7,8 @@
     },
     {
         "id": 2,
-        "name": "Ishchi",
+        "name": "asdad",
         "password": "9999",
-        "role": "worker"
-    },
-    {
-        "id": 3,
-        "name": "kmdur",
-        "password": "0000",
         "role": "worker"
     }
 ]

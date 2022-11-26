@@ -6,8 +6,11 @@ import { createWorkerValidate } from '../validate/login.validate.js'
 export const adminGet = (req, res, next) =>{
     const allWorkers = read('users.json').filter(e => e.role == "worker")
 
+    const year = new Date().getFullYear()
+    const month = new Date().getMonth() + 1
+    const day = new Date().getDate()
 
-    return  res.render('admin.ejs', {allWorkers: allWorkers})
+    return  res.render('admin.ejs', {allWorkers: allWorkers, newDate: `${year}.${month}.${day}`})
 }
 
 export const adminWorkersGet = (req, res, next)=>{
@@ -21,8 +24,11 @@ export const adminWorkersGet = (req, res, next)=>{
 
     const foundWork = allWorkInTheDay.filter(e => e.workerId == id)
 
+    const year = new Date().getFullYear()
+    const month = new Date().getMonth() + 1
+    const day = new Date().getDate()
 
-    return res.render('admin.workers.ejs', {foundWorker: foundWorker, foundWork: foundWork})
+    return res.render('admin.workers.ejs', {foundWorker: foundWorker, foundWork: foundWork, newDate: `${year}.${month}.${day}`})
 
 }
 

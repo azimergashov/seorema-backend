@@ -7,41 +7,113 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+        <title>admin-workers</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;700&display=swap" rel="stylesheet">
+
+
     <style>
+        .body{
+           background-image: url('../assets/img/bacground-other.png') !important;
+           background-color: #013B86;
+           background-size: cover;
+           margin-bottom: 0;
+        }
         .card-work {
             border-radius: 10px;
-            border: solid 1px black;
+            border: solid 1px #FFF;
             padding: 30px 20px;
+            background-color: #FFF;
+            font-family: 'Lora';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 20px;
+            line-height: 26px;
+            color: #000000;
         }
+        .card-work-iscomplited{
+            border-radius: 10px;
+            border: solid 1px rgba(41, 191, 18, 0.5);
+            padding: 30px 20px;
+            background-color: rgba(41, 191, 18, 0.5);
+            font-family: 'Lora';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 20px;
+            line-height: 26px;
+            color: #FFFFFF;
+
+        }
+        .card-work-iscomplited h2{
+            color: white;
+        }
+        .card-work-iscomplited span{
+            color: #FFF !important;
+        }
+        .card-work-iscomplited h3{
+            color: yellow;
+        }
+        .heading{
+            font-family: 'Lora';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 26px;
+            line-height: 33px;
+            color: #FFFFFF;
+        }
+        .task{
+            font-family: 'Lora';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 24px;
+            line-height: 31px;
+            color: #FFFFFF;
+        }
+
+
     </style>
-    <title>admin-workers</title>
 </head>
 
-<body>
+<body  class=" body ">
 
-    <div class="container">
-        <h1 class="text-center mt-3">Ishchi: <%= foundWorker.name%>
+    <div class="container bg">
+        <h1 class="heading text-center mt-3">Ishchi: <%= foundWorker.name%>
         </h1>
+        <div class="text-end w-100"><p class="m-0 p-0 text-light"><%= newDate%></p></div>
+        <div class="text-end"><p></p></div>
 
         <form class="mb-5" action="/createTask" enctype="application/x-www-form-urlencoded" method="post" >
-            <textarea class="w-100 " required  name="title"  cols="30" rows="5" placeholder="Vazifani yozing.."></textarea>
+            <textarea class="w-100 form-control " required  name="title"  cols="30" rows="5" placeholder="Vazifani yozing.."></textarea>
             <input class="d-none" type="number" name="workerId" value="<%= foundWorker.id%>">
             <div class="text-center">
-                <button class="btn btn-primary w-50" type="submit">Vazifa qo'shish</button>
+                <button class="btn btn-primary w-50 mt-3" type="submit">Vazifa qo'shish</button>
             </div>
         </form>
 
 
-        <h1>Berilgan vazifalar</h1>
+        <h1 class="task">Berilgan vazifalar</h1>
         <ul class="list-unstyled">
             <% foundWork?.length & foundWork.map(e=>{%>
 
-                <li class="card-work mb-3">
-                    <h2><%= e.title%></h2>
-                    <p>Izoh: <%= e.comment%></p>
+                <li class=" <% if( e.isComplited == false){%>
+                    card-work mb-3
+                    <%}%>
+
+                    <% if( e.isComplited == true){%>
+                        card-work-iscomplited mb-3
+                        <%}%>">
+                    <p>Vazifa: <%= e.title%></p>
+                    <p class="m-0 p-0">Vazifa berilgan vaqt: <%= e.year%>.<%= e.month%>.<%= e.day%>   <%= e.hour%>:<%= e.minute%></p>
+                    <h2>Izoh: <%= e.comment%></h2>
                     <p>Izoh qoldirilgan vaqt: <%= e.commentDate%>  <%= e.commentHour%></p>
-                    <div class="d-flex justify-content-between align-items-lg-center">
-                        <p class="m-0 p-0"><span class="text-success">Vazifa berilgan vaqt:  </span>  <%= e.year%>.<%= e.month%>.<%= e.day%>   <span class="text-success"><%= e.hour%>:<%= e.minute%> </span></p>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <% if(e.isComplited == true){%>
+                            <h3>Bajarildi: ✔✔✔</h3>
+                            <%}%>
+                        <% if(e.isComplited == false){%>
+                            <h3>Bajarilmadi: ❌❌❌</h3>
+                            <%}%>
                          <a class="btn btn-danger" href="/deleteTask/<%= e.id%>/<%= foundWorker.id%>">O'chirish</a>
                     </div>
                 </li>

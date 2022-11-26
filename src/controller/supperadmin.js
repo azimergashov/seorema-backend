@@ -4,11 +4,16 @@ import {ErrorCostumer} from '../exceptions/errorCostumer.js'
 // import { date } from 'joi'
 
 export const supperAdminGet = (req, res, next)=>{
+
    const allWorkers = read('users.json').filter(e => e.role == "worker")
-   const allAdmins = read('users.json').filter(e => e.role == "admin")
+   const allAdmins = read('users.json').filter(e => e.role == "admin" && e.id != req.userId)
    console.log(allWorkers);
 
-   return  res.render('supperadmin.ejs', {allWorkers: allWorkers, allAdmins: allAdmins})
+   const year = new Date().getFullYear()
+    const month = new Date().getMonth() + 1
+    const day = new Date().getDate()
+
+   return  res.render('supperadmin.ejs', {allWorkers: allWorkers, allAdmins: allAdmins, newDate: `${year}.${month}.${day}`})
 }
 
 export const createWorkerSup =  (req, res, next) =>{
@@ -86,13 +91,13 @@ export const createTask = (req, res, next) =>{
 
     const allTasks = read('tasks.json')
     const year = new Date().getFullYear()
-    const month = new Date().getMonth()
+    const month = new Date().getMonth() + 1
     const day = new Date().getDate()
     const hour = new Date().getHours()
     const minute = new Date().getMinutes()
 
 
-    allTasks.push({id: allTasks.at(-1)?.id + 1 || 1, workerId, title, comment: "", commentDate: "", commentHour: "", year: year, month: month + 1, day: day, hour: hour, minute: minute})
+    allTasks.push({id: allTasks.at(-1)?.id + 1 || 1, workerId, title, comment: "", commentDate: "", commentHour: "", year: year, month: month, day: day, hour: hour, minute: minute, isComplited: false})
 
     const newTask = write('tasks.json', allTasks)
 

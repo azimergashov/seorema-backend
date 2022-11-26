@@ -1,13 +1,21 @@
 
 .card-worker{
-    border: solid 1px black;
+    border: solid 1px #D9D9D9;
     border-radius: 10px;
     padding: 0;
     max-width: 303px;
+    background-color: #D9D9D9;
 
 }
 .card-worker + .card-worker{
     margin-left: 20px;
+
+    font-family: 'Lora';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 31px;
+    color: #29BF12;
 }
 .card-worker-img{
     border-top-right-radius: 10px;
@@ -15,4 +23,41 @@
 }
 .card-worker-title{
     min-height: 80px;
+    font-family: 'Lora';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 31px;
+    color: #29BF12;
+}
+
+.body{
+    margin-bottom: 0;
+    background-image: url('../img/bacground-other.png') !important;
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: 'Lora';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 26px;
+    color: #000000;
+}
+
+.heading{
+    font-family: 'Lora';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 31px;
+    color: #FFFFFF;
+}
+
+.parol{
+    font-family: 'Lora';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 19px;
+    color: rgba(0, 0, 0, 0.5);;
 }

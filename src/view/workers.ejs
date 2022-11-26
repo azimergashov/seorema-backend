@@ -6,35 +6,76 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="../assets/css/workers.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;700&display=swap" rel="stylesheet">
     <title>workers</title>
 </head>
-<body>
+<body class="body">
     <div class="container">
        <header>
-        <h1 class="text-center"><%= foundUser.name%></h1>
+        <h1 class="text-center heading"><%= foundUser.name%></h1>
         <div class="text-end">
-            <p class="m-0 p-0"><%= newDate%></p>
+            <p class="m-0 p-0 text-light"><%= newDate%></p>
         </div>
        </header>
 
       <main>
-        <h2 class="text-center mb-5">Topshiriqlar</h2>
+        <h2 class="text-center mb-5 heading">Topshiriqlar</h2>
         <ul class="list-unstyled">
-            <%foundTasks.length & foundTasks.map(e =>{ %>
-                <li class="tasks-card  mb-2">
-                    <%= e.title%>
-                   <div class="d-flex align-items-center">
-                    <form class="w-100 mt-3" action="/createComment/<%= e.id%>" enctype="application/x-www-form-urlencoded" method="post">
-                        <input class="form-control" type="text" name="comment" required placeholder="Izoh qoldiring...">
-                        <div class="text-end mt-2">
-                            <button class="btn btn-success" type="submit">Izoh qoldirish</button>
+            <%foundTasks.length & foundTasks.map(e =>{ %>`
+
+
+
+                <li class="  <% if( e.isComplited == false){%>
+                    tasks-card  mb-2
+                    <%}%>
+
+                    <% if( e.isComplited == true){%>
+                        tasks-card-isComplited mb-2
+                        <%}%>">
+
+                    <h2>Vazifa: <%= e.title%></h2>
+                    <p class="m-0 p-0">Vazifa berilgan vaqt:   <%= e.year%>.<%= e.month%>.<%= e.day%> <%= e.hour%>:<%= e.minute%> </p>
+                    <p class="m-0 p-0">Izoh:  <%= e.comment%></p>
+                    <p>Izoh qoldirilgan vaqt: <%= e.commentDate%>  <%= e.commentHour%></p>
+
+
+
+                    <% if(e.isComplited == false){%>
+
+                        <div class="d-flex align-items-center">
+                            <form class="w-100 mt-3" action="/createComment/<%= e.id%>" enctype="application/x-www-form-urlencoded" method="post">
+                                <input class="form-control" type="text" name="comment" required placeholder="Izoh qoldiring...">
+                                <div class="text-end mt-2">
+                                    <button class="btn btn-warning w-100" type="submit">Izoh qoldirish</button>
+                                </div>
+                            </form>
+                           </div>
+                           <div class="d-flex align-items-center" >
+                            <!-- <p class="m-0 p-0 me-2">Bajarildi: </p> -->
+                            <a class="btn btn-success  w-100 mt-2" href="/iscomplited/<%= e.id%>">Bajardim</a>
+                            <!-- <input id="<%= e.id%>" onchange="return isComplited(this.id)" style="max-width: 40px; width: 100%;" class="form-check-input mt-0" type="checkbox" value="true" > -->
                         </div>
-                    </form>
-                   </div>
+                        <%}%>
+
+                        <% if(e.isComplited == true){%>
+                            <div class="text-center"><h3>Bajarildi</h3></div>
+                            <%}%>
+
                 </li>
                 <% })%>
         </ul>
       </main>
     </div>
+    <!-- <script >
+        const isComplited = (id) =>{
+            fetch(`http://localhost:9090/iscomplited/${id}`, {
+                method: "POST"
+            }).then(res => console.log(res)).catch(err => console.log(err))
+
+            console.log(id);
+        }
+    </script> -->
 </body>
 </html>

@@ -1,5 +1,47 @@
 .tasks-card{
-    border: solid 1px black;
+    border: solid 1px #FFF;
     border-radius: 10px;
     padding: 10px 20px;
+    background-color: #FFF;
+    font-family: 'Lora';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 26px;
+    color: #000000;
+}
+
+.tasks-card-isComplited{
+    border: solid 1px #69EB31;
+    border-radius: 10px;
+    padding: 10px 20px;
+    background-color: #69EB31;
+    font-family: 'Lora';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 26px;
+    color: #FFF;
+}
+
+
+
+
+
+.tasks-card-isComplited h2 {
+    color: white;
+}
+
+.body{
+    margin-bottom: 0;
+    background-image: url('../img/bacground-other.png') !important;
+    background-size: cover;
+}
+.heading{
+    font-family: 'Lora';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 36px;
+    color: #FFFFFF;
 }
